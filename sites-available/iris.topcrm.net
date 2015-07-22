@@ -1,0 +1,26 @@
+<VirtualHost *:80>
+	# DO NOT EDIT THIS CONFIG!!1
+        ServerAdmin yes@zwoelf.pl
+        ServerName iris.topcrm.net
+        ServerAlias *.iris.topcrm.net
+        #DocumentRoot /var/www/
+        VirtualDocumentRoot /var/www/%0
+
+	ErrorDocument 404 http://errors.topcrm.net/404
+	ErrorDocument 403 http://errors.topcrm.net/403
+	ErrorDocument 500 http://errors.topcrm.net/500
+
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory /var/www/%1>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride None
+                Order allow,deny
+                allow from all
+        </Directory>
+        ErrorLog ${APACHE_LOG_DIR}/iris.topcrm.net-error.log
+        LogLevel warn
+        CustomLog ${APACHE_LOG_DIR}/iris.topcrm.net-access.log combined
+</VirtualHost>
